@@ -2,6 +2,7 @@ package se.sprinto.hakan.chatapp.dao;
 
 
 import se.sprinto.hakan.chatapp.model.User;
+import se.sprinto.hakan.chatapp.util.PasswordUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ public class UserListDAO implements UserDAO {
 
     @Override
     public User register(User user) {
+        String hashed = PasswordUtil.hashPassword(user.getPassword());
+
         user.setId(nextId++);
         users.add(user);
         return user;
@@ -21,11 +24,11 @@ public class UserListDAO implements UserDAO {
 
     @Override
     public User login(String username, String password) {
-        Optional<User> found = users.stream()
-                .filter(u -> u.getUsername().equals(username) && u.getPassword().equals(password))
+       Optional<User> found = users.stream()
+                .filter(u -> u.getUsername().equals(username) && PasswordUtil.verifyPassword(password,u.getPassword()))
                 .findFirst();
         return found.orElse(null);
-    }
+           }
 
     // valfritt: för testsyfte
     public void seedUsers() {
@@ -33,4 +36,5 @@ public class UserListDAO implements UserDAO {
         register(new User("hakan", "password"));
     }
 }
+
 

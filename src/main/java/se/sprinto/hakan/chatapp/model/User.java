@@ -1,12 +1,13 @@
 package se.sprinto.hakan.chatapp.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class User {
     private int id;
     private String username;
-    private String password;
+    private String passwordHash;
     private List<Message> messages = new ArrayList<>();
 
     public User() {
@@ -15,12 +16,12 @@ public class User {
     public User(int id, String username, String password) {
         this.id = id;
         this.username = username;
-        this.password = password;
+        this.passwordHash = password;
     }
 
     public User(String username, String password) {
         this.username = username;
-        this.password = password;
+        this.passwordHash = password;
     }
 
     public int getId() {
@@ -40,15 +41,22 @@ public class User {
     }
 
     public String getPassword() {
-        return password;
+        return passwordHash;
     }
 
     public void addMessage(Message message) {
         messages.add(message);
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public List<Message> getMessages() {
+        return Collections.unmodifiableList(messages);
+    }
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }
 

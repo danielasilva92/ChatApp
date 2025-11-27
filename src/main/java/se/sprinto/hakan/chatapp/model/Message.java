@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Message {
     private int id;
-    //använder endast userId här, eftersom hela Usern inte behövs
+    //använder endast Id här, eftersom hela Usern inte behövs
     private int userId;
     private String text;
     private LocalDateTime timestamp;
@@ -13,14 +13,23 @@ public class Message {
         this.userId = userId;
         this.text = text;
         this.timestamp = timestamp;
-    }
 
+    }
     public int getUserId() {
         return userId;
     }
 
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
     public String getText() {
-        return text;
+
+    return text;
     }
 
     public LocalDateTime getTimestamp() {
