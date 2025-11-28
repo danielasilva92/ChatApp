@@ -1,0 +1,7 @@
+# ===============================
+#   DATABASE CONFIGURATION
+# ===============================
+
+db.url=jdbc:mysql://localhost:3306/chatapp
+db.username=YOUR_USERNAME_HERE
+db.password=YOUR_PASSWORD_HERE
